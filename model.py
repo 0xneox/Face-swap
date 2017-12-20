@@ -52,3 +52,8 @@ encoder = Encoder()
 decoder_A = Decoder()
 decoder_B = Decoder()
 
+x = Input( shape=IMAGE_SHAPE )
+
+autoencoder_A = Model( x, decoder_A( encoder(x) ) )
+autoencoder_B = Model( x, decoder_B( encoder(x) ) )
+autoencoder_A.compile( optimizer=optimizer, loss='mean_absolute_error' )
