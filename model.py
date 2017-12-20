@@ -25,3 +25,25 @@ def upscale( filters ):
         x = PixelShuffler()(x)
         return x
     return block
+
+def Encoder():
+    input_ = Input( shape=IMAGE_SHAPE )
+    x = input_
+    x = conv( 128)(x)
+    x = conv( 256)(x)
+    x = conv( 512)(x)
+    x = conv(1024)(x)
+    x = Dense( ENCODER_DIM )( Flatten()(x) )
+    x = Dense(4*4*1024)(x)
+    x = Reshape((4,4,1024))(x)
+    x = upscale(512)(x)
+    return Model( input_, x )
+
+def Decoder():
+    input_ = Input( shape=(8,8,512) )
+    x = input_
+    x = upscale(256)(x)
+    x = upscale(128)(x)
+    x = upscale( 64)(x)
+    x = Conv2D( 3, kernel_size=5, padding='same', activation='sigmoid' )(x)
+    return Model( input_, x )
