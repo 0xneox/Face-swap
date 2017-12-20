@@ -10,3 +10,7 @@ A face swapping algorithm written in Python .
  TensorFlow 1.3+
  
  Keras 2
+
+## How to run
+
+ python train.py
