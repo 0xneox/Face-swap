@@ -47,3 +47,8 @@ def Decoder():
     x = upscale( 64)(x)
     x = Conv2D( 3, kernel_size=5, padding='same', activation='sigmoid' )(x)
     return Model( input_, x )
+
+encoder = Encoder()
+decoder_A = Decoder()
+decoder_B = Decoder()
+
