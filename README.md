@@ -8,8 +8,7 @@ A face swapping algorithm written in Python .
  OpenCV 3.0
  
  TensorFlow 1.3+
- 
- Keras 2
+
 
 ## How to run
 
